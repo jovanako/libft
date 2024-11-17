@@ -13,19 +13,7 @@
 #include <unistd.h>
 #include "libft.h"
 
-/*size_t	ft_strlen(const char *str)
-{
-	size_t	len;
-
-	len = 0;
-	while (str[len])
-	{
-		len++;
-	}
-	return (len);
-}
-*/
-static int	check_for_overlap(const void *ptr1, size_t len1, const void *ptr2, size_t len2)
+static int	overlaps(const void *ptr1, size_t len1, const void *ptr2, size_t len2)
 {
 	const char *start1 = (const char *)ptr1;
 	const char *start2 = (const char *)ptr2;
@@ -44,21 +32,20 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	char	*s = (char *)src;
 	size_t	len_d;
 	size_t	len_s;
-	int	i;
+	size_t	i;
 
 	len_d = ft_strlen(d);
 	len_s = ft_strlen(s);
 	i = 0;
-	if (!check_for_overlap(d, len_d, s, len_s))
+	if (!overlaps(d, len_d, s, len_s))
 	{
 		while(i < n)
 		{
 			d[i] = s[i];
 			i++;
 		}
-		d[i] = '\0';
 	}
-	return (d);
+	return (dest);
 }
 /*
 #include <stdio.h>
@@ -66,10 +53,22 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 int	main()
 {
-	char dest[20] = "42 Berlin";
-	char src[20];
+	const char *src = "42 Berlin";
+	char dest[10] = "123456789";
+	char *d;
+	char *d_c;
 	
-	printf("My result: %s\n", ft_memcpy(dest, src, ft_strlen(src) + 1));
-	printf("memcpy() result: %s", memcpy(dest, src, ft_strlen(src) + 1));
+	d = ft_memcpy(dest, src, 3);
+        printf("My result: %s\n", d);
+
+	d = ft_memcpy(dest, src, ft_strlen(src));
+	printf("My result: %s\n", d);
+	d_c = memcpy(dest, src, ft_strlen(src));
+        printf("memcpy() result: %s\n", d_c);
+
+	d = ft_memcpy(dest, src, 3);
+	printf("My result: %s\n", d);
+	
 	return (0);
-}*/
+}
+*/

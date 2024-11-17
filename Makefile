@@ -18,6 +18,7 @@ SRCDIR = jkovacev_libft
 INCDIR = libft.h
 
 SRCS = $(SRCDIR)/ft_isalpha.c $(SRCDIR)/ft_isdigit.c $(SRCDIR)/ft_isalnum.c $(SRCDIR)/ft_isascii.c $(SRCDIR)/ft_isprint.c $(SRCDIR)/ft_strlen.c $(SRCDIR)/ft_memset.c $(SRCDIR)/ft_bzero.c $(SRCDIR)/ft_memcpy.c $(SRCDIR)/ft_strlcpy.c $(SRCDIR)/ft_strlcat.c $(SRCDIR)/ft_toupper.c $(SRCDIR)/ft_tolower.c $(SRCDIR)/ft_substr.c $(SRCDIR)/ft_strjoin.c
+
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

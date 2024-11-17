@@ -13,55 +13,34 @@
 #include <unistd.h>
 #include "libft.h"
 
-void	*memset(void *str, int c, size_t n)
+void	*ft_memset(void *str, int c, size_t n)
 {
-	int		i;
-	char	*prefix;
-	char	*suffix;
-	char	*result;
+	size_t		i;
 	unsigned char	*s;
 	
 	s = (unsigned char *)str;
-	if (n < ft_strlen(s))
+	i = 0;
+	while (i < n)
 	{
-		prefix = ft_substr(s, 0, n);
-		suffix = ft_substr(s, n, ft_strlen(s));
-		i = 0;
-		while (i < n)
-		{
-			prefix[i++] = c;
-		}
-		result = ft_strjoin(prefix, suffix);
-		result[ft_strlen(result)] = '\0';
+		s[i++] = c;
 	}
 	return (str);
 }
 /*
-#include <stdlib.h>
 #include <stdio.h>
 
 int	main()
 {
-	int     i;
-	char    *prefix;
-	char    *suffix;
-	char    *result;
-	char    *str = "Good morning";
+	char    str[13] = "Good morning\0";
 	char    c = '+';
 	size_t	n = 4;
 
-	if (n < ft_strlen(str))
-	{       
-		prefix = ft_substr(str, 0, n);
-		suffix = ft_substr(str, n, ft_strlen(str));
-		i = 0;
-		while (i < n)
-		{
-			prefix[i++] = c;
-		}
-		result = ft_strjoin(prefix, suffix);
-		result[ft_strlen(result)] = '\0';
-	}
-	printf("Result: %s", result);
+        ft_memset(str, c, n);
+	printf("Result: %s\n", str);
+	
+	char    str1[6] = "hello\0";
+	memset(str1, c, n);
+	printf("Real memset: %s\n", str1);
+	
 	return (0);
 }*/
