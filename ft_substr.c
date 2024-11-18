@@ -6,17 +6,16 @@
 /*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:08:13 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/12 12:52:22 by jkovacev         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:53:19 by jkovacev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
+#include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	substr = (char *) malloc (len * sizeof(char) + 1);

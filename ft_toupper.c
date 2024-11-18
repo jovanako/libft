@@ -18,20 +18,3 @@ int	ft_toupper(int c)
 	}
 	return (c);
 }
-/*
-#include <stdio.h>
-#include <ctype.h>
-
-int	main()
-{
-	char c = 'a';
-	printf("My result: %c\n", ft_toupper(c));
-	printf("toupper() result: %c\n", toupper(c));
-	c = 'A';
-	printf("My result: %c\n", ft_toupper(c));
-	printf("toupper() result: %c\n", toupper(c));
-	c = 4;
-	printf("Result: %d\n", ft_toupper(c));
-	printf("toupper() result: %d\n", toupper(c));
-	return (0);
-}*/

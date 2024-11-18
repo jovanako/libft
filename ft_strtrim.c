@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 16:47:39 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/18 12:56:11 by jkovacev         ###   ########.fr       */
+/*   Created: 2024/11/18 11:34:21 by jkovacev          #+#    #+#             */
+/*   Updated: 2024/11/18 12:04:40 by jkovacev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
-void	*ft_memset(void *str, int c, size_t n)
+char	*ft_strtrim(char const *s1, char const *set)
 {
+	char	*s1_copy;
 	size_t		i;
-	unsigned char	*s;
-	
-	s = (unsigned char *)str;
+	size_t		s1_copy_len;
+
 	i = 0;
-	while (i < n)
+
+	s1_copy = (char *) malloc (ft_strlen(s1) * sizeof(char) + 1);
+	if (!substr)
 	{
-		s[i++] = c;
+		return ((void *)0);
 	}
-	return (str);
+	else
+	{
+		while (
+	}
 }

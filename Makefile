@@ -1,40 +1,47 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Makefile                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 10:51:56 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/13 11:54:03 by jkovacev         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/18 17:22:11 by jkovacev          #+#    #+#              #
+#    Updated: 2024/11/18 17:22:27 by jkovacev         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = libft.a
+
 CC = cc
+
 CFLAGS = -Wall -Wextra -Werror
+LIBFLAGS = -L. -lft
 
-SRCDIR = jkovacev_libft
-INCDIR = libft.h
-
-SRCS = $(SRCDIR)/ft_isalpha.c $(SRCDIR)/ft_isdigit.c $(SRCDIR)/ft_isalnum.c $(SRCDIR)/ft_isascii.c $(SRCDIR)/ft_isprint.c $(SRCDIR)/ft_strlen.c $(SRCDIR)/ft_memset.c $(SRCDIR)/ft_bzero.c $(SRCDIR)/ft_memcpy.c $(SRCDIR)/ft_strlcpy.c $(SRCDIR)/ft_strlcat.c $(SRCDIR)/ft_toupper.c $(SRCDIR)/ft_tolower.c $(SRCDIR)/ft_substr.c $(SRCDIR)/ft_strjoin.c
+SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_substr.c ft_strjoin.c
 
 OBJS = $(SRCS:.c=.o)
 
+TEST_SRCS = test.c
+TEST_NAME = test
+
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME) : $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
+test: $(NAME)
+	cc $(CFLAGS) $(TEST_SRCS) $(LIBFLAGS) -o $(TEST_NAME)
+
 %.o: %.c
-	$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
 	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(TEST_NAME)
 
 re: fclean all
+retest: fclean test
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test retest

@@ -10,31 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 void	ft_bzero(void *str, size_t n)
 {
 	unsigned char	*ptr;
-
+	unsigned int	i;
+	
 	ptr = (unsigned char *)str;
-	while (n > 0)
+	i = 0;
+	while (i < n)
 	{
-		*ptr++ = '\0';
-		n--;
+		ptr[i] = '\0';
+		i++;
 	}
 }
-/*
-#include <stdio.h>
-#include <strings.h>
-
-int	main()
-{
-	char *s1 = "Hello World";
-	ft_bzero(s1, 4);
-	printf("My result: %s", s1);
-
-	char *s2 = "Hello World";
-	bzero(s2, 4);
-	printf("bzero result: %s", s2);
-	return (0);
-}*/

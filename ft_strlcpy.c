@@ -6,27 +6,26 @@
 /*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:43:35 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/14 11:45:13 by jkovacev         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:56:48 by jkovacev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
-size_t	ft_strlcpy(char* dst, const char* src, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-        int i;
+	int	i;
         
-        i = 0;
+	i = 0;
 	if (size != 0)
 	{
-	  while (size > 1 && src[i] != '\0')
-	  {
-		  dst[i] = src[i];
-		  i++;
-		  size--;
-	  }
-	  dst[i] = '\0';
+		while (size > 1 && src[i] != '\0')
+		{
+			dst[i] = src[i];
+			i++;
+			size--;
+		}
+		dst[i] = '\0';
 	}
 	return (ft_strlen(src));
 }

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
 size_t	ft_strlen(const char *str)
 {
@@ -23,24 +23,3 @@ size_t	ft_strlen(const char *str)
 	}
 	return (len);
 }
-/*
-#include <string.h>
-#include <stdio.h>
-
-int	main(void)
-{
-	char *a = "hello";
-	char *b = "B";
-	char *c = "good morning";
-
-	printf("My function result: %zu\n", ft_strlen(a));
-	printf("strlen() result: %zu\n", strlen(a));
-
-	printf("My function result: %zu\n", ft_strlen(b));
-        printf("strlen() result: %zu\n", strlen(b));
-
-	printf("My function result: %zu\n", ft_strlen(c));
-        printf("strlen() result: %zu\n", strlen(c));
-
-	return (0);
-}*/

@@ -18,20 +18,3 @@ int	ft_tolower(int c)
 	}
 	return (c);
 }
-/*
-#include <stdio.h>
-#include <ctype.h>
-
-int	main()
-{
-	char c = 'A';
-	printf("My result: %c\n", ft_tolower(c));
-	printf("tolower() result: %c\n", tolower(c));
-	c = 'a';
-	printf("My result: %c\n", ft_tolower(c));
-	printf("tolower() result: %c\n", tolower(c));
-	c = 4;
-	printf("Result: %d\n", ft_tolower(c));
-	printf("tolower() result: %d\n", tolower(c));
-	return (0);
-}*/
