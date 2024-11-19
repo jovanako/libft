@@ -6,7 +6,7 @@
 /*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:03:07 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/18 12:55:46 by jkovacev         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:23:17 by jkovacev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	size_t	len_d;
 	size_t	len_s;
 	size_t	i;
-	
+
 	d = (char *)dest;
 	s = (char *)src;
 	len_d = ft_strlen(d);
@@ -40,7 +40,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	i = 0;
 	if (!overlaps(d, len_d, s, len_s))
 	{
-		while(i < n)
+		while (i < n)
 		{
 			d[i] = s[i];
 			i++;

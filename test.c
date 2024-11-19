@@ -6,7 +6,7 @@
 /*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:49:10 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/18 16:40:59 by jkovacev         ###   ########.fr       */
+/*   Updated: 2024/11/19 15:40:33 by jkovacev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,57 @@ void	test_memcpy(void)
 	printf("Result for libc memcpy: %s\n", d_c);
 }
 
+void	test_memmove(void)
+{
+	char test1[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', '\0'};
+	char *d1;
+	d1 = &test1[3];
+	char *s1;
+	s1 = &test1[0];
+	ft_memmove(d1, s1, 4);
+	printf("Result 1 for ft_memmove: %s\n", d1);
+
+	char test1c[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', '\0'};
+	char *d1c;
+	d1c = &test1c[3];
+	char *s1c;
+	s1c = &test1c[0];
+	memmove(d1c, s1c, 4);
+	printf("Result 1 for memmove: %s\n", d1c);
+
+	char test2[] = { '1', '2', '3', '4', '5', '6', '0', '0', '0', '\0'};
+	char *d2;
+	d2 = &test2[5];
+	char *s2;
+	s2 = &test2[0];
+	ft_memmove(d2, s2, 3);
+	printf("Result 2 for ft_memmove: %s\n", d2);
+
+	char test2c[] = { '1', '2', '3', '4', '5', '6', '0', '0', '0', '\0'};
+	char *d2c;
+	d2c = &test2c[5];
+	char *s2c;
+	s2c = &test2c[0];
+	memmove(d2c, s2c, 3);
+	printf("Result 2 for memmove: %s\n", d2c);
+
+	char test3[] = { '7', '8', '9', '0', '0', '0', '\0'};
+	char *d3;
+	d3 = &test3[2];
+	char *s3;
+	s3 = &test3[0];
+	ft_memmove(d3, s3, 2);
+	printf("Result 3 for ft_memmove: %s\n", d3);
+	
+	char test3c[] = { '7', '8', '9', '0', '0', '0', '\0'};
+	char *d3c;
+	d3c = &test3c[2];
+	char *s3c;
+	s3c = &test3c[0];
+	memmove(d3c, s3c, 2);
+	printf("Result 3 for memmove: %s\n", d3c);
+}
+
 void	test_strlcpy(void)
 {
 	char	d1[13];
@@ -153,6 +204,22 @@ void    test_tolower(void)
         printf("Result for libc tolower: %c, %c, %c\n", tolower('A'), tolower('a'), tolower('4'));
 }
 
+void	test_strchr(void)
+{
+	const char *s1 = "abcadd";
+	char c1 = 'a';
+	char *expected1;
+	expected1 = &s1[3];
+	printf("Result 1 for ft_strchr: %p	expected: %p\n", ft_strchr(s1, c1), expected1);
+	printf("Result 1 for libc strchr: %p\n", strchr(s1, c1));
+
+	char c2 = 'd';
+	char *expected2;
+	expected2 = &s1[4];
+	printf("Result 2 for ft_strchr: %p	expected: %p\n", ft_strchr(s1, c2), expected2);
+	printf("Result 2 for libc strchr: %p\n", strchr(s1, c2));
+}
+
 int	main(void)
 {
 	test_isalpha();
@@ -164,6 +231,7 @@ int	main(void)
 	test_memset();
 	test_bzero();
 	test_memcpy();
+	test_memmove();
 	test_strlcpy();
 	test_strlcat();
 	test_toupper();

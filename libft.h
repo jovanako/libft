@@ -6,12 +6,13 @@
 /*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:11:28 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/18 12:57:18 by jkovacev         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:07:08 by jkovacev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-# define LIBFT_H
+#define LIBFT_H
+
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -25,10 +26,13 @@ int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
+void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memset(void *str, int c, size_t n);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+char	*ft_strchr(const char *s, int c);
+char	*strrchr(const char *s, int c);
 
 #endif
