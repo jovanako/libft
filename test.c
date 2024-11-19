@@ -209,15 +209,31 @@ void	test_strchr(void)
 	const char *s1 = "abcadd";
 	char c1 = 'a';
 	char *expected1;
-	expected1 = &s1[3];
+	expected1 = (char *)&s1[0];
 	printf("Result 1 for ft_strchr: %p	expected: %p\n", ft_strchr(s1, c1), expected1);
 	printf("Result 1 for libc strchr: %p\n", strchr(s1, c1));
 
 	char c2 = 'd';
 	char *expected2;
-	expected2 = &s1[4];
+	expected2 = (char *)&s1[4];
 	printf("Result 2 for ft_strchr: %p	expected: %p\n", ft_strchr(s1, c2), expected2);
 	printf("Result 2 for libc strchr: %p\n", strchr(s1, c2));
+}
+
+void	test_strrchr(void)
+{
+	const char *s1 = "abcadd";
+	char c1 = 'a';
+	char *expected1;
+	expected1 = (char *)&s1[3];
+	printf("Result 1 for ft_strrchr: %p	expected: %p\n", ft_strrchr(s1, c1), expected1);
+	printf("Result 1 for libc strrchr: %p\n", strrchr(s1, c1));
+
+	char c2 = 'd';
+	char *expected2;
+	expected2 = (char *)&s1[5];
+	printf("Result 2 for ft_strchr: %p	expected: %p\n", ft_strrchr(s1, c2), expected2);
+	printf("Result 2 for libc strchr: %p\n", strrchr(s1, c2));
 }
 
 int	main(void)
@@ -236,6 +252,8 @@ int	main(void)
 	test_strlcat();
 	test_toupper();
 	test_tolower();
+	test_strchr();
+	test_strrchr();
 
 	return (0);
 }
