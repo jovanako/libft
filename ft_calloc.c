@@ -15,21 +15,14 @@
 void	*ft_calloc(size_t nelem, size_t elsize)
 {
 	void	*ptr;
-	size_t	i;
 
-	i = 0;
 	if (nelem != 0 && elsize != 0)
 	{
 		ptr = (void *) malloc(nelem * elsize);
-		if (!ptr)
-		{
-			return ((void *)0);
-		}
-		else
+		if (ptr)
 		{
 			ft_bzero(ptr, nelem * elsize);
-			return (ptr);
 		}
 	}
-	return ((void *)0);
+	return (ptr);
 }
