@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 17:13:41 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/20 11:48:45 by jkovacev         ###   ########.fr       */
+/*   Created: 2024/11/21 14:34:55 by jkovacev          #+#    #+#             */
+/*   Updated: 2024/11/21 16:41:55 by jkovacev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	*ft_calloc(size_t nelem, size_t elsize)
 {
+	void	*ptr;
 	size_t	i;
 
-	i = ft_strlen(s) + 1;
-	while ((i > 0) || (s[i] == c))
+	i = 0;
+	if (nelem != 0 && elsize != 0)
 	{
-		if (s[i] == c)
+		ptr = (void *) malloc(nelem * elsize);
+		if (!ptr)
 		{
-			return ((char *)&s[i]);
+			return ((void *)0);
 		}
-		i--;
+		else
+		{
+			ft_bzero(ptr, nelem * elsize);
+			return (ptr);
+		}
 	}
 	return ((void *)0);
 }

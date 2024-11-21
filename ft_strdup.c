@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 17:13:41 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/20 11:48:45 by jkovacev         ###   ########.fr       */
+/*   Created: 2024/11/21 16:47:37 by jkovacev          #+#    #+#             */
+/*   Updated: 2024/11/21 16:52:01 by jkovacev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strdup(const char *s)
 {
-	size_t	i;
-
-	i = ft_strlen(s) + 1;
-	while ((i > 0) || (s[i] == c))
-	{
-		if (s[i] == c)
-		{
-			return ((char *)&s[i]);
-		}
-		i--;
-	}
-	return ((void *)0);
+	
 }

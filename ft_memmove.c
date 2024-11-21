@@ -6,13 +6,14 @@
 /*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 14:06:22 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/19 15:17:09 by jkovacev         ###   ########.fr       */
+/*   Updated: 2024/11/20 10:55:21 by jkovacev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	copy_from_src_to_dest(unsigned char *d, unsigned char *s, size_t size)
+static void	copy_from_src_to_dest(unsigned char *d, 
+		unsigned char *s, size_t size)
 {
 	size_t		i;
 

@@ -6,7 +6,7 @@
 /*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:49:10 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/19 15:40:33 by jkovacev         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:41:06 by jkovacev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,19 @@ void	test_memcpy(void)
 	char	*d_c;
 
 	d = ft_memcpy(dest, src, 3);
-	printf("Result for ft_memcpy: %s\n", d);
+	printf("Result 1 for ft_memcpy: %s\n", d);
 	d_c = memcpy(dest, src, 3);
-	printf("Result for libc memcpy: %s\n", d_c);
+	printf("Result 1 for libc memcpy: %s\n", d_c);
 
 	d = ft_memcpy(dest, src, ft_strlen(src));
-	printf("Result for ft_memcpy: %s\n", d);
+	printf("Result 2 for ft_memcpy: %s\n", d);
 	d_c = memcpy(dest, src, strlen(src));
-	printf("Result for libc memcpy: %s\n", d_c);
+	printf("Result 2 for libc memcpy: %s\n", d_c);
+
+	d = ft_memcpy(dest, src, 10);
+	printf("Result 3 for ft_memcpy: %s\n", d);
+	d_c = memcpy(dest, src, strlen(src));
+	printf("Result 3 for libc memcpy: %s\n", d_c);
 }
 
 void	test_memmove(void)
@@ -218,6 +223,12 @@ void	test_strchr(void)
 	expected2 = (char *)&s1[4];
 	printf("Result 2 for ft_strchr: %p	expected: %p\n", ft_strchr(s1, c2), expected2);
 	printf("Result 2 for libc strchr: %p\n", strchr(s1, c2));
+
+	char c3 = '\0';
+	char *expected3;
+	expected3 = (char *)&s1[6];
+	printf("Result 3 for ft_strchr: %p	expected: %p\n", ft_strchr(s1, c3), expected3);
+	printf("Result 3 for libc strchr: %p\n", strchr(s1, c3));
 }
 
 void	test_strrchr(void)
@@ -232,8 +243,94 @@ void	test_strrchr(void)
 	char c2 = 'd';
 	char *expected2;
 	expected2 = (char *)&s1[5];
-	printf("Result 2 for ft_strchr: %p	expected: %p\n", ft_strrchr(s1, c2), expected2);
-	printf("Result 2 for libc strchr: %p\n", strrchr(s1, c2));
+	printf("Result 2 for ft_strrchr: %p	expected: %p\n", ft_strrchr(s1, c2), expected2);
+	printf("Result 2 for libc strrchr: %p\n", strrchr(s1, c2));
+
+	char c3 = '\0';
+	char *expected3;
+	expected3 = (char *)&s1[6];
+	printf("Result 3 for ft_strrchr: %p	expected: %p\n", ft_strrchr(s1, c3), expected3);
+	printf("Result 3 for libc strrchr: %p\n", strrchr(s1, c3));
+}
+
+void	test_strncmp(void)
+{
+	const char *s1 = "abcdefgh";
+	const char *s2 = "abcd";
+
+	const char *s3 = "\0";
+	const char *s4 = "123abc";
+	const char *s5 = "aab";
+
+	printf("Result 1 for ft_strncmp: %d, %d, %d, %d, %d\n", ft_strncmp(s1, s2, 4), ft_strncmp(s1, s3, 2), ft_strncmp(s3, s1, 4), ft_strncmp(s1, s4, 6), ft_strncmp(s1, s5, 3));
+	printf("Result for strncmp: %d, %d, %d, %d, %d\n", strncmp(s1, s2, 4), strncmp(s1, s3, 2), strncmp(s3, s1, 4), strncmp(s1, s4, 6), strncmp(s1, s5, 3));
+}
+
+void	test_memchr(void)
+{
+	char *s = "abc";
+    char c1 = '+';
+	char c2 = '\0';
+	char c3 = 'a';
+	char c4 = 'c';
+    
+    printf("Result for ft_memchr: %p, %p, %p, %p\n", ft_memchr(s, c1, 3), ft_memchr(s, c2, 3), ft_memchr(s, c3, 3), ft_memchr(s, c4, 3));
+    printf("Result for memchr: %p, %p, %p, %p\n", memchr(s, c1, 3), memchr(s, c2, 3), memchr(s, c3, 3), memchr(s, c4, 3));
+}
+
+void	test_memcmp(void)
+{
+	char *s1 = "abc";
+
+    char *s2 = "abc";
+	char *s3 = "bbc";
+	char *s4 = "123jk";
+	char *s5 = "\0";
+    
+    printf("My result: %d, %d, %d, %d, %d\n", ft_memcmp(s1, s2, 3), ft_memcmp(s1, s3, 3), ft_memcmp(s1, s4, 3), ft_memcmp(s1, s5, 3), ft_memcmp(s2, s1, 3));
+    printf("Libc result: %d, %d, %d, %d, %d\n", memcmp(s1, s2, 3), memcmp(s1, s3, 3), memcmp(s1, s4, 3), memcmp(s1, s5, 3), memcmp(s2, s1, 3));
+}
+
+void	test_strnstr(void)
+{
+	char *big = "hello world";
+    char *little1 = "world";
+	char *little2 = "\0";
+	char *little3 = "abc";
+    
+    printf("Expected 1: %p\n", &big[6]);
+    printf("Result 1 for ft_strnstr: %p\n", ft_strnstr(big, little1, 5));
+	printf("Expected 2: %p\n", &big[0]);
+	printf("Result 2 for ft_strnstr: %p\n", ft_strnstr(big, little2, 2));
+	printf("Expected 3: %p\n", NULL);
+	printf("Result 3 for ft_strnstr: %p\n", ft_strnstr(big, little3, 3));
+}
+
+void	test_atoi(void)
+{
+	const char *n1 = "423";
+	const char *n2 = "-423";
+	const char *n3 = "-0567";
+	const char *n4 = "0567";
+	const char *n5 = "0";
+	const char *n6 = "2147483647";
+	const char *n7 = "-2147483648";
+    
+    printf("Result for ft_atoi: %d, %d, %d, %d, %d, %d, %d\n", ft_atoi(n1), ft_atoi(n2), ft_atoi(n3), ft_atoi(n4), ft_atoi(n5), ft_atoi(n6), ft_atoi(n7));
+    printf("Result for libc atoi: %d, %d, %d, %d, %d, %d, %d\n", atoi(n1), atoi(n2), atoi(n3), atoi(n4), atoi(n5), atoi(n6), atoi(n7));
+}
+
+void	test_calloc(void)
+{
+	size_t nelem = 5;
+    size_t elsize = 1;
+	void *p1 = calloc(nelem, elsize);
+	void *p2 = ft_calloc(nelem, elsize);
+    
+    printf("calloc: %p\n", p1);
+	free(p1);
+    printf("my calloc: %p\n", ft_calloc(nelem, elsize));
+	free(p2);
 }
 
 int	main(void)
@@ -254,6 +351,11 @@ int	main(void)
 	test_tolower();
 	test_strchr();
 	test_strrchr();
+	test_strncmp();
+	test_memchr();
+	test_strnstr();
+	test_atoi();
+	test_calloc();
 
 	return (0);
 }
