@@ -113,6 +113,17 @@ void	test_memcpy(void)
 	printf("ft_memcpy 3:	%s\n", d);
 	d_c = memcpy(dest, src, strlen(src));
 	printf("memcpy 3:	%s\n\n", d_c);
+
+	char test1[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', '\0'};
+	char *d1;
+	d1 = &test1[3];
+	char *d_c_1 = &test1[3];
+	char *s1;
+	s1 = &test1[0];
+	d1 = ft_memcpy(d1, s1, 3);
+	printf("ft_memcpy 4:	%s\n", d1);
+	d_c_1 = memcpy(d1, s1, 3);
+	printf("memcpy 4:	%s\n", d_c_1);
 }
 
 void	test_memmove(void)
@@ -321,6 +332,20 @@ void	test_calloc(void)
 	free(p2);
 }
 
+void	test_strdup(void)
+{
+	const char *s = "hello";
+    char *result = ft_strdup(s);
+    printf("ft_strdup:	%s\n", result);
+    printf("Original address:	%p\nduplicate address:	%p\n", s, result);
+    free(result);
+
+    char *lib_result = strdup(s);
+    printf("strdup:		%s\n", lib_result);
+    printf("Original address:	%p\nduplicate address:	%p\n", s, lib_result);
+    free(lib_result);
+}
+
 int	main(void)
 {
 	test_isalpha();
@@ -345,6 +370,7 @@ int	main(void)
 	test_strnstr();
 	test_atoi();
 	test_calloc();
-
+	test_strdup();
+	
 	return (0);
 }

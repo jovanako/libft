@@ -15,14 +15,17 @@
 void	*ft_calloc(size_t nelem, size_t elsize)
 {
 	void	*ptr;
+	int		temp;
 
-	if (nelem != 0 && elsize != 0)
+	temp = nelem * elsize;
+	if ((temp / nelem == elsize) && (nelem != 0 && elsize != 0))
 	{
-		ptr = (void *) malloc(nelem * elsize);
+		ptr = malloc(nelem * elsize);
 		if (ptr)
 		{
 			ft_bzero(ptr, nelem * elsize);
 		}
+		return (ptr);
 	}
-	return (ptr);
+	return ((void *)0);
 }
