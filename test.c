@@ -205,7 +205,12 @@ void	test_strlcat(void)
 	const char *s2 = "5678";
 	char d2[9] = "1234";
     result = ft_strlcat(d2, s2, 9);
-	printf("ft_strlcat:	Total length (8):	%zu\nResulting string (12345678):		%s\n\n", result, d2);
+	printf("ft_strlcat:	Total length (8):	%zu\nResulting string (12345678):		%s\n", result, d2);
+
+	char dest[30]; memset(dest, 0, 30);
+	char * src = (char *)"AAAAAAAAA";
+	dest[0] = 'B';
+	printf("function: %zu, dest: %s\n\n", ft_strlcat(dest, src, 0), dest);
 }
 
 void	test_toupper(void)

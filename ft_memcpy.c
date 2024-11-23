@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	overlaps(const void *ptr1, size_t len1, 
+static int	overlaps(const void *ptr1, size_t len1,
 		const void *ptr2, size_t len2)
 {
 	const char	*start1 = (const char *)ptr1;

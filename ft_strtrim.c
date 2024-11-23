@@ -48,5 +48,5 @@ char	*ft_strtrim(char const *s1, char const *set)
 			break ;
 		move_end++;
 	}
-	return (ft_substr(s1, move_start, (s1_len - move_start - move_end))); 
+	return (ft_substr(s1, move_start, (s1_len - move_start - move_end)));
 }
