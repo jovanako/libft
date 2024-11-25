@@ -15,7 +15,7 @@
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	char	*p_first;
-	unsigned int		i;
+	size_t	i;
 	size_t	little_len;
 
 	i = 0;

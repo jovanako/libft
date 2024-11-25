@@ -12,7 +12,8 @@
 
 #include "libft.h"
 
-static int	calculate_substring_size(size_t start_index, size_t src_length, size_t max_len)
+static int	calculate_substring_size(size_t start_index,
+		size_t src_length, size_t max_len)
 {
 	if (start_index < src_length)
 	{
