@@ -38,7 +38,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substr = (char *) malloc (substring_size * sizeof(char) + 1);
 	if (!substr)
 		return ((void *)0);
-	{
 	i = 0;
 	j = start;
 	while ((j < s_len) && (j < (start + len)))
@@ -49,7 +48,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	substr[i] = '\0';
 	return (substr);
-	}
 }
 /*
 #include <stdio.h>
