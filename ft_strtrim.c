@@ -14,11 +14,14 @@
 
 static char	is_equal(char c, char const *set)
 {
-	while (*set)
+	unsigned int	i;
+
+	i = 0;
+	while (set[i])
 	{
-		if (c == *set)
+		if (c == set[i])
 			return (1);
-		*set++;
+		i++;
 	}
 	return (0);
 }
