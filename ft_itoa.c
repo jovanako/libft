@@ -11,56 +11,70 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static size_t	int_length(unsigned int n)
-{
-	long	num;
-	size_t	int_len;
-
-	int_len = 0;
-	num = n;
-	if (num < 0)
-		num *= -1;
-	if(num == 0)
-		int_len = 1;
-	while (num > 0)
-	{
-		num /= 10;
-		int_len++;
-	}
-	return int_len;
-}
-
-char	*ft_itoa(int n)
-{
-	size_t	int_len;
-	char	*result;
-	char	sign;
-
-	int_len = int_length(n);
-	result = (char *)malloc(int_len * sizeof(char) + 1);
-	if (!result)
-		return (0);
-	if (n < 0)
-	{
-		result[0] = '-';
-		n *= -1;
-	}
-	result[int_len] = '\0';
-	while (int_len)
-	{
-		result[--int_len] = (n % 10) + '0';
-		n /= 10;
-	}
-	return (result);
-}
-
 #include <stdio.h>
-int	main(void)
-{
-	char *str = ft_itoa(-3543);
 
-	printf("%s\n", str);
-	free(str);
-	return (0);
+static size_t   calculate_int_length(long n)
+{
+    size_t  int_len;
+
+    int_len = 0;
+    if (n < 0)
+        n *= -1;
+    if (n == 0)
+        int_len = 1;
+    while (n > 0)
+    {
+        n /= 10;
+        int_len++;
+    }
+    return int_len;
+}
+
+static size_t   calculate_required_size(int n, size_t n_len)
+{
+    if (n < 0)
+    {
+        return (n_len + 1);
+    }
+    return (n_len);
+}
+
+static char *generate_string(char *result, long num, size_t int_len, size_t res_len)
+{
+    size_t  i;
+
+    i = res_len - 1;
+    while ((i >= (res_len - int_len)) && num > 0)
+        {
+                result[i--] = (num % 10) + '0';
+                num /= 10;
+        }
+		if (i == 0)
+			result[i] = '-';
+        return (result);
+}
+
+char    *ft_itoa(int n)
+{
+        size_t  int_len;
+        size_t  res_len;
+        long    num;
+        char    *result;
+
+        num = n;
+        int_len = calculate_int_length(num);
+        res_len = calculate_required_size(num, int_len);
+        if (num < 0)
+                num *= -1;
+        result = (char *)malloc(res_len * sizeof(char) + 1);
+        if (!result)
+                return (NULL);
+        result[res_len] = '\0';
+        if (num == 0)
+        {
+            result[0] = '0';
+            return (result);
+        }
+        result = generate_string(result, num, int_len, res_len);
+        return (result);
 }
