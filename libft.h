@@ -43,5 +43,6 @@ void	*ft_calloc(size_t nelem, size_t elsize);
 char	*ft_strdup(const char *s);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_itoa(int n);
+void	ft_putchar_fd(char c, int fd);
 
 #endif

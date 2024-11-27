@@ -26,30 +26,55 @@ static char	is_equal(char c, char const *set)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+static char	*generate_trimmed_copy(char const *s1,
+		char *copy, size_t start, size_t copy_size)
 {
 	size_t	i;
-	size_t	end_i;
-	size_t	s1_len;
-	size_t	move_start;
-	size_t	move_end;
 
 	i = 0;
-	s1_len = ft_strlen(s1);
-	end_i = s1_len - 1;
-	move_start = 0;
-	move_end = 0;
-	while (s1[i])
+	while (i < copy_size)
 	{
-		if (!is_equal(s1[i++], set))
-			break ;
-		move_start++;
+		copy[i] = s1[start];
+		i++;
+		start++;
 	}
-	while (end_i > i)
-	{
-		if (!is_equal(s1[end_i--], set))
-			break ;
-		move_end++;
-	}
-	return (ft_substr(s1, move_start, (s1_len - move_start - move_end)));
+	copy[i] = '\0';
+	return (copy);
 }
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*copy;
+	size_t	end;
+	size_t	s1_len;
+	size_t	start;
+	size_t	copy_size;
+
+	if (!s1)
+		return (0);
+	s1_len = ft_strlen(s1);
+	start = 0;
+	end = s1_len - 1;
+	while (s1[start] && is_equal(s1[start], set))
+	{
+		start++;
+	}
+	while ((end > start) && is_equal(s1[end], set))
+	{
+		end--;
+	}
+	copy_size = end - start + 1;
+	copy = (char *) malloc (copy_size * sizeof(char) + 1);
+	if (!copy)
+		return ((char *)0);
+	return (generate_trimmed_copy(s1, copy, start, copy_size));
+}
+
+// #include <stdio.h>
+// int	main()
+// {
+// 	char * s = ft_strtrim("   xxx   xxx", " x");
+// 	printf("Result: %s\n", s);
+// 	free(s);
+// 	return 0;
+// }

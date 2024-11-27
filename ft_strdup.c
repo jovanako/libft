@@ -36,7 +36,7 @@ char	*ft_strdup(const char *s)
 	size_t	s_len;
 
 	s_len = ft_strlen(s);
-	dup = malloc(s_len * sizeof(char));
+	dup = malloc(s_len * sizeof(char) + 1);
 	if (dup)
 	{
 		dup = copy_string(dup, s, s_len);
