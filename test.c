@@ -439,9 +439,37 @@ void	test_itoa(void)
 
 void	test_ft_putchar_fd(void)
 {
+	char	*f = "ft_putchar_fd: ";
 	char	c = '@';
+
+	ft_putendl_fd(f, 1);
 	ft_putchar_fd(c, 1);
 	write(1, "\n\n", 2);
+}
+
+void	test_ft_putstr_fd(void)
+{
+	char	*f = "ft_putstr_fd: ";
+	char	*s = "Hello World!";
+
+	ft_putendl_fd(f, 1);
+	ft_putstr_fd(s, 1);
+	write(1, "\n\n", 2);
+
+}
+
+void	test_ft_putendl_fd(void)
+{
+	char	*f = "ft_putendl_fd: ";
+	char	*s = "Hello World!";
+
+	ft_putendl_fd(f, 1);
+	ft_putendl_fd(s, 1);
+}
+
+void	test_fd_putnbr_fd(void)
+{
+	
 }
 
 int	main(void)
@@ -474,6 +502,9 @@ int	main(void)
 	test_strtrim();
 	test_itoa();
 	test_ft_putchar_fd();
+	test_ft_putstr_fd();
+	test_ft_putendl_fd();
+	test_ft_putnbr_fd();
 
 	return (0);
 }
