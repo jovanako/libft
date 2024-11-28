@@ -51,17 +51,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	return ((void *)0);
 }
-/*
-#include <stdio.h>
-
-int	main()
-{
-	char *s1 = "Hello ";
-	char *s2 = "world";
-	char *result;
-
-	result = ft_strjoin(s1, s2);
-	printf("Result is: %s\n", result);
-	free (result);
-	return (0);
-}*/

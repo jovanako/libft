@@ -354,8 +354,94 @@ void	test_strdup(void)
 
     char *lib_result = strdup(s);
     printf("strdup:		%s\n", lib_result);
-    printf("Original address:	%p\nduplicate address:	%p\n", s, lib_result);
+    printf("Original address:	%p\nduplicate address:	%p\n\n", s, lib_result);
     free(lib_result);
+}
+
+void	test_substr(void)
+{
+	char *s = "Hello world";
+	size_t len = 5;
+	unsigned int start = 6;
+	char *substr;
+
+	substr = ft_substr(s, start, len);
+	printf("ft_substr: %s\n", substr);
+	free(substr);
+
+	s = "weightlifting";
+	len = 7;
+	substr = ft_substr(s, start, len);
+        printf("ft_substr: %s\n", substr);
+        free(substr);
+
+	len = -2;
+	substr = ft_substr(s, start, len);
+	printf("ft_substr: %s\n\n", substr);
+	free(substr);
+}
+
+void	test_strjoin(void)
+{
+	char *s1 = "Hello ";
+	char *s2 = "world";
+	char *result;
+
+	result = ft_strjoin(s1, s2);
+	printf("ft_strjoin: %s\n\n", result);
+	free (result);
+}
+
+void	test_strtrim(void)
+{
+	char * s = ft_strtrim("   xxx   xxx", " x");
+ 	printf("ft_strtrim: %s\n\n", s);
+ 	free(s);
+}
+
+void	test_itoa(void)
+{
+	long	num = 2147483647;
+	char	*result = ft_itoa(num);
+	printf("ft_itoa for int_max: %s\n", result);
+	free(result);
+	
+
+	num = -2147483648;
+	result = ft_itoa(num);
+	printf("ft_itoa for int_min: %s\n", result);
+	free(result);
+	
+
+	num = -1;
+	result = ft_itoa(num);
+	printf("ft_itoa for -1: %s\n", result);
+	free(result);
+	
+
+	num = 0;
+	result = ft_itoa(num);
+	printf("ft_itoa for 0: %s\n", result);
+	free(result);
+	
+
+	num = 1000;
+	result = ft_itoa(num);
+	printf("ft_itoa for 1000: %s\n", result);
+	free(result);
+	
+
+	num = -1000;
+	result = ft_itoa(num);
+	printf("ft_itoa for -1000: %s\n\n", result);
+	free(result);	
+}
+
+void	test_ft_putchar_fd(void)
+{
+	char	c = '@';
+	ft_putchar_fd(c, 1);
+	write(1, "\n\n", 2);
 }
 
 int	main(void)
@@ -383,6 +469,11 @@ int	main(void)
 	test_atoi();
 	test_calloc();
 	test_strdup();
-	
+	test_substr();
+	test_strjoin();
+	test_strtrim();
+	test_itoa();
+	test_ft_putchar_fd();
+
 	return (0);
 }

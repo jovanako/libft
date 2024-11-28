@@ -50,30 +50,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substr[i] = '\0';
 	return (substr);
 }
-/*
-#include <stdio.h>
-
-int	main()
-{
-	char *s = "Hello world";
-	size_t len = 5;
-	unsigned int start = 6;
-	char *substr;
-
-	substr = ft_substr(s, start, len);
-	printf("%s\n", substr);
-	free(substr);
-
-	s = "weightlifting";
-	len = 7;
-	substr = ft_substr(s, start, len);
-        printf("%s\n", substr);
-        free(substr);
-
-	len = -2;
-	substr = ft_substr(s, start, len);
-	printf("%s\n", substr);
-	free(substr);
-
-	return (0);
-}*/

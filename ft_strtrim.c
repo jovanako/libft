@@ -69,12 +69,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return ((char *)0);
 	return (generate_trimmed_copy(s1, copy, start, copy_size));
 }
-
-// #include <stdio.h>
-// int	main()
-// {
-// 	char * s = ft_strtrim("   xxx   xxx", " x");
-// 	printf("Result: %s\n", s);
-// 	free(s);
-// 	return 0;
-// }
