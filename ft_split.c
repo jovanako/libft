@@ -1,22 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/28 15:15:38 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/28 15:15:45 by jkovacev         ###   ########.fr       */
+/*   Created: 2024/11/28 16:29:01 by jkovacev          #+#    #+#             */
+/*   Updated: 2024/11/28 17:13:27 by jkovacev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+/*static size_t	delimiter_count(char *s, char c)
 {
-	while (*s != '\0')
+	size_t	i;
+	size_t	counter;
+
+	i = 0;
+	counter = 0;
+	while (s[i] != '\0')
 	{
-		write (fd, s, 1);
-		s++;
+		if (s[i] == c)
+			counter++;
+		i++;		
 	}
+	return (counter);
+}*/
+
+char	**ft_split(char const *s, char c)
+{
+	char	*split;
+	size_t	delimiter;
+//	size_t	counter;
+	int		*delimiters;
+
+	split = (char *)s;
+//	counter = delimiter_counter(split, c);
+	while (split[i] != '\0')
+	{
+		if (split[i] == c)
+		{
+			i++;
+		}
+
+	}	
 }

@@ -1,13 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/28 15:07:11 by jkovacev          #+#    #+#             */
+/*   Updated: 2024/11/28 15:14:19 by jkovacev         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
 static void	print_int(int *arr, int fd)
 {
 	char	c;
-	int	i;
-	
+	int		i;
+
 	i = 0;
-	while ((arr[i] = 0) && (i < 9))
+	while ((arr[i] == 0) && (i < 9))
 		i++;
 	while (i < 10)
 	{
@@ -20,8 +31,8 @@ static void	print_int(int *arr, int fd)
 void	ft_putnbr_fd(int n, int fd)
 {
 	long	num;
-	int	int_arr[10];
-	size_t	i;
+	int		int_arr[10];
+	int		i;
 
 	num = n;
 	if (num < 0)
@@ -31,10 +42,10 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	i = 9;
 	while (i >= 0)
-        {
-                int_arr[i] = n % 10;
-                n /= 10;
-                i--;
-        }
+	{
+		int_arr[i] = num % 10;
+		num /= 10;
+		i--;
+	}
 	print_int(int_arr, fd);
 }

@@ -6,7 +6,7 @@
 /*   By: jkovacev <jkovacev@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:49:59 by jkovacev          #+#    #+#             */
-/*   Updated: 2024/11/19 15:20:50 by jkovacev         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:15:20 by jkovacev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	char	*s;
 	size_t	dstlen;
 	size_t	bytes_left;
-	
+
 	d = (char *)dst;
 	s = (char *)src;
 	bytes_left = dstsize;

@@ -467,9 +467,18 @@ void	test_ft_putendl_fd(void)
 	ft_putendl_fd(s, 1);
 }
 
-void	test_fd_putnbr_fd(void)
+void	test_ft_putnbr_fd(void)
 {
-	
+	ft_putnbr_fd(123, 1);
+	write(1, "\n", 1);
+	ft_putnbr_fd(-1, 1);
+	write(1, "\n", 1);
+	ft_putnbr_fd(0, 1);
+	write(1, "\n", 1);
+	ft_putnbr_fd(-2147483648, 1);
+	write(1, "\n", 1);
+	ft_putnbr_fd(2147483647, 1);
+	write(1, "\n\n", 2);
 }
 
 int	main(void)
