@@ -12,37 +12,79 @@
 
 #include "libft.h"
 
-/*static size_t	delimiter_count(char *s, char c)
+static size_t	string_count(char *s, char c)
 {
 	size_t	i;
-	size_t	counter;
+	size_t	s_len;
+	int		count;
 
-	i = 0;
-	counter = 0;
-	while (s[i] != '\0')
+	s_len = ft_strlen(s);
+	count = 0;
+	if (ft_strchr(s, c))
 	{
-		if (s[i] == c)
-			counter++;
-		i++;		
+		i = 0;
+		if ((s[i] != c) && (s[s_len - 1] != c))
+		{
+			count++;
+		}
+		if ((s[i] == c) && (s[s_len - 1] == c)) 
+		{
+			count--;
+		}
+		while (s[i] != '\0')
+		{
+			if (s[i] == c)
+			{
+				count++;
+				i++;
+			}
+			while (s[i] == c)
+				i++;		
+		}
 	}
-	return (counter);
-}*/
+	return (count);
+}
 
 char	**ft_split(char const *s, char c)
 {
+	char	*str;
 	char	*split;
-	size_t	delimiter;
-//	size_t	counter;
+	char	**result;
+	char	*start;
+	char	*next;
+	size_t	s_end;
+	size_t	i;
+	int		parts_count;
 	int		*delimiters;
 
-	split = (char *)s;
-//	counter = delimiter_counter(split, c);
-	while (split[i] != '\0')
+	str = (char *)s;
+	s_end = ft_strlen(str) - 1;
+	parts_count = string_count(str, c);
+	if (parts_count == 0)
+		parts_count = 1;
+	result = (char **)malloc((parts_count + 1) * sizeof(char *));
+	if (!result)
+		return (0);
+	if (!ft_strchr(str, c))
+		result[0] = str;
+	next = str;
+	i = 0;
+	while (*str)
 	{
-		if (split[i] == c)
+		start = ft_strchr(str, c);
+		if ((start != &str[s_end])
+			&& (next != &str[s_end]))
 		{
-			i++;
+			next = ft_strchr(start + 1, c);
 		}
-
-	}	
+		split = (char *)malloc((next - start + 1) * sizeof(char));
+		if (!split)
+			return (0);
+		split = ft_substr(str, start - str, next - start);
+		split[next - start] = '\0';
+		result[i] = split;
+		i++;
+		str = (char *)&s_end;
+	}
+	result[parts_count] = (void *)0; 
 }
