@@ -394,8 +394,8 @@ void	test_strjoin(void)
 
 void	test_strtrim(void)
 {
-	char * s = ft_strtrim("   xxx   xxx", " x");
- 	printf("ft_strtrim: %s\n\n", s);
+	char * s = ft_strtrim("  ", " ");
+ 	printf("ft_strtrim: '%s'\n\n", s);
  	free(s);
 }
 
@@ -481,6 +481,19 @@ void	test_ft_putnbr_fd(void)
 	write(1, "\n\n", 2);
 }
 
+void	test_ft_split(void)
+{
+	char *s = "  tripouille  42  ";
+	char c = ' ';
+    char **arr = ft_split(s, c);
+    int i = 0;
+    while (i < 5)
+    {
+        printf("arr[%d]: %s\n", i, arr[i]);
+        i++;
+    }
+}
+
 int	main(void)
 {
 	test_isalpha();
@@ -514,6 +527,7 @@ int	main(void)
 	test_ft_putstr_fd();
 	test_ft_putendl_fd();
 	test_ft_putnbr_fd();
+	test_ft_split();
 
 	return (0);
 }
