@@ -12,7 +12,7 @@
 
 int	ft_isalnum(int c)
 {
-	return (((char)c >= 'a' && (char)c <= 'z')
-		|| ((char)c >= 'A' && (char)c <= 'Z')
-		|| ((char)c >= '0' && (char)c <= '9'));
+	return ((c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z')
+		|| (c >= '0' && c <= '9'));
 }

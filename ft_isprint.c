@@ -12,5 +12,5 @@
 
 int	ft_isprint(int c)
 {
-	return ((char)c >= 32 && (char)c <= 126);
+	return (c >= 32 && c <= 126);
 }
