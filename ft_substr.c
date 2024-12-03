@@ -38,7 +38,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	substring_size = calculate_substring_size(start, s_len, len);
 	substr = (char *) malloc (substring_size * sizeof(char) + 1);
 	if (!substr)
-		return ((void *)0);
+		return (0);
 	i = 0;
 	j = start;
 	while ((j < s_len) && (j < (start + len)))

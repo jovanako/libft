@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-static int	overlaps(const char *ptr1, size_t len1,
-		const char *ptr2, size_t len2)
+static int	overlaps(unsigned char *ptr1, size_t len1,
+		unsigned char *ptr2, size_t len2)
 {
-	const char	*end1 = ptr1 + (len1 - 1);
-	const char	*end2 = ptr2 + (len2 - 1);
+	unsigned char	*end1 = ptr1 + (len1 - 1);
+	unsigned char	*end2 = ptr2 + (len2 - 1);
 
 	if ((ptr1 == ptr2) || (ptr2 > ptr1 && ptr2 <= end1)
 		|| (ptr1 > ptr2 && ptr1 <= end2))
@@ -26,18 +26,18 @@ static int	overlaps(const char *ptr1, size_t len1,
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char	*d;
-	char	*s;
+	unsigned char	*d;
+	unsigned char	*s;
 	size_t	len_d;
 	size_t	len_s;
 	size_t	i;
 
-	d = (char *)dest;
-	s = (char *)src;
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
 	if (src)
 	{
-		len_d = ft_strlen(d);
-		len_s = ft_strlen(s);
+		len_d = ft_strlen((char *)d);
+		len_s = ft_strlen((char *)s);
 		i = 0;
 		if (!overlaps(d, len_d, s, len_s))
 		{

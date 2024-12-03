@@ -124,6 +124,8 @@ char	**ft_split(char const *s, char c)
 	{
 		parts_count = 0;
 		result = (char **)malloc((parts_count + 1) * sizeof(char *));
+		if (!result)
+			return (0);
 		result[parts_count] = (void *)0;
 		return (result);
 	}
