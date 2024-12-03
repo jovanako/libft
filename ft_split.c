@@ -88,9 +88,23 @@ static char *find_next_start(char *s, char c)
 	size_t	i;
 
 	i = 0;
-	if (s[i] == c)
+	while (s[i] == c)
 		i++;
 	return &(s[i]);
+}
+
+static int  has_parts(char *s, char c)
+{
+    size_t i;
+	
+	i = 0;    
+    while (s[i])
+    {
+        if (s[i] != c)
+            return (1);
+        i++;
+    }
+    return (0);
 }
 
 char	**ft_split(char const *s, char c)
@@ -105,33 +119,37 @@ char	**ft_split(char const *s, char c)
 	int		parts_count;
 
 	str = (char *)s;
-	str = trim_string(str, c);
 	s_len = ft_strlen(str);
-	if (*str)
+	if ((s_len == 0) || (!has_parts(str, c)))
 	{
-		parts_count = string_count(str, c);
-		if (parts_count == 0)
-			parts_count = 1;
+		parts_count = 0;
 		result = (char **)malloc((parts_count + 1) * sizeof(char *));
-		if (!result)
-			return (0);
-		if (!ft_strchr(str, c))
-		 	result[0] = str;
-		next = str;
-	 	start = str;
-	 	i = 0;
-	 	while (i < parts_count)
-	 	{
-	 		if (ft_strchr(start, c))
-	 			next = ft_strchr(start, c);
-	 		else
-	 			next = &(str[s_len]);
-	 		split = ft_substr(str, start - str, next - start);
-	 		result[i] = split;
-	 		i++;
-	 		start = next;
-			start = find_next_start(start, c);
-	 	}
+		result[parts_count] = (void *)0;
+		return (result);
+	}
+	str = trim_string(str, c);
+	parts_count = string_count(str, c);
+	if (parts_count == 0)
+		parts_count = 1;
+	result = (char **)malloc((parts_count + 1) * sizeof(char *));
+	if (!result)
+		return (0);
+	if (!ft_strchr(str, c))
+		result[0] = str;
+	next = str;
+	start = str;
+	i = 0;
+	while (i < parts_count)
+	{
+		if (ft_strchr(start, c))
+			next = ft_strchr(start, c);
+		else
+			next = &(str[s_len]);
+		split = ft_substr(str, start - str, next - start);
+		result[i] = split;
+		i++;
+		start = next;
+		start = find_next_start(start, c);
 	}
 	result[parts_count] = (void *)0;
 	return (result);

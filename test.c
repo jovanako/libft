@@ -18,8 +18,8 @@
 
 void	test_isalpha(void)
 {
-	printf("ft_isalpha:	%d, %d, %d, %d\n", ft_isalpha('2'), ft_isalpha('a'), ft_isalpha('Y'), ft_isalpha('+'));
-	printf("isalpha:	%d, %d, %d, %d\n\n", isalpha('2'), isalpha('a'), isalpha('Y'), isalpha('+'));
+	printf("ft_isalpha:	%d, %d, %d, %d\n", ft_isalpha('-1'), ft_isalpha('a'), ft_isalpha('Y'), ft_isalpha('+'));
+	printf("isalpha:	%d, %d, %d, %d\n\n", isalpha('-1'), isalpha('a'), isalpha('Y'), isalpha('+'));
 }
 
 void    test_isdigit(void)
