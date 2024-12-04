@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-static void	copy_from_src_to_dest(unsigned char *d,
-		unsigned char *s, size_t size)
+static void	copy_from_src_to_dest(char *d,
+		const char *s, size_t size)
 {
-	size_t		i;
+	size_t	i;
 
 	if ((d > s) && (d < (s + size)))
 	{
@@ -40,12 +40,14 @@ static void	copy_from_src_to_dest(unsigned char *d,
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char	*d;
-	unsigned char	*s;
-	size_t			size;
+	char		*d;
+	const char	*s;
+	size_t		size;
 
-	d = (unsigned char *)dest;
-	s = (unsigned char *)src;
+	if (dest == NULL && src == NULL)
+		return (dest);
+	d = dest;
+	s = src;
 	size = n;
 	copy_from_src_to_dest(d, s, size);
 	return (dest);
