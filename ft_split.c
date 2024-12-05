@@ -37,7 +37,7 @@ static int	string_count(char *s, char c)
 	return (count);
 }
 
-static char	*find_next_start(char *s, char c)
+static char	*find_next_word(char *s, char c)
 {
 	size_t	i;
 
@@ -86,7 +86,7 @@ static char	**split_and_add_to_array(char *s, int parts_count,
 		}
 		i++;
 		start = next;
-		start = find_next_start(start, c);
+		start = find_next_word(start, c);
 	}
 	return (result);
 }
@@ -100,7 +100,7 @@ char	**ft_split(char const *s, char c)
 
 	set[0] = c;
 	str = (char *)s;
-	if ((ft_strlen(str) == 0) || !(*find_next_start(str, c)))
+	if ((ft_strlen(str) == 0) || !(*find_next_word(str, c)))
 		return (no_parts());
 	str = ft_strtrim(str, set);
 	if (!str)

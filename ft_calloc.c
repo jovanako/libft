@@ -18,9 +18,9 @@ void	*ft_calloc(size_t nelem, size_t elsize)
 	int		bytes;
 
 	if (nelem == 0)
-    	nelem = 1;
+		nelem = 1;
 	if (elsize == 0)
-    	elsize = 1;
+		elsize = 1;
 	bytes = nelem * elsize;
 	if (!(nelem && (bytes / nelem == elsize)))
 		return (0);

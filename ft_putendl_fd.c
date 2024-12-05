@@ -14,10 +14,13 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	while (*s != '\0')
+	unsigned char	*ptr;
+
+	ptr = (unsigned char *)s;
+	while (*ptr != '\0')
 	{
-		write (fd, s, 1);
-		s++;
+		write (fd, ptr, 1);
+		ptr++;
 	}
-	write (fd, "\n", 2);
+	write (fd, "\n", 1);
 }
