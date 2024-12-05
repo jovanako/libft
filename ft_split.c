@@ -64,6 +64,7 @@ static char	**split_and_add_to_array(char *s, int parts_count,
 	char	*start;
 	char	*next;
 	int		i;
+	int		j;
 
 	next = s;
 	start = s;
@@ -75,6 +76,14 @@ static char	**split_and_add_to_array(char *s, int parts_count,
 		else
 			next = &(s[ft_strlen(s)]);
 		result[i] = ft_substr(s, start - s, next - start);
+		if (!result[i])
+		{
+			j = 0;
+			while (result[j])
+				free(result[j++]);
+			free(result);
+			return (0);
+		}
 		i++;
 		start = next;
 		start = find_next_start(start, c);
@@ -94,6 +103,8 @@ char	**ft_split(char const *s, char c)
 	if ((ft_strlen(str) == 0) || !(*find_next_start(str, c)))
 		return (no_parts());
 	str = ft_strtrim(str, set);
+	if (!str)
+		return (0);
 	parts_count = string_count(str, c);
 	result = (char **)malloc((parts_count + 1) * sizeof(char *));
 	if (!result)

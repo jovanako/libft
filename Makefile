@@ -34,7 +34,7 @@ $(NAME) : $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 test: $(NAME)
-	cc $(CFLAGS) $(TEST_SRCS) $(LIBFLAGS) -o $(TEST_NAME)
+	cc $(CFLAGS) $(TEST_SRCS) $(LIBFLAGS) -lbsd -o $(TEST_NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<

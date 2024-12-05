@@ -15,6 +15,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
+#include <bsd/string.h>
 
 void	test_isalpha(void)
 {
@@ -304,19 +305,83 @@ void	test_memcmp(void)
     printf("memcmp:		%d, %d, %d, %d, %d\n\n", memcmp(s1, s2, 3), memcmp(s1, s3, 3), memcmp(s1, s4, 3), memcmp(s1, s5, 1), memcmp(s2, s1, 3));
 }
 
+void    sub_test_strnstr(char *big, char *little, size_t len) {
+	char *expected = strnstr(big, little, len);
+	char *actual = ft_strnstr(big, little, len);
+
+	if (expected == NULL && actual == NULL) {
+		return;
+	}
+
+	if (expected == NULL || actual == NULL) {
+		printf("***Failed %s, %s, %zu, expected: %s, actual: %s\n", big, little, len, expected, actual);
+		return;
+	}
+
+	size_t expected_len = ft_strlen(expected);
+	size_t actual_len = ft_strlen(actual);
+	if (expected_len != actual_len || ft_strncmp(expected, actual, expected_len)) {
+		printf("***Failed %s, %s, %zu, expected: %s, actual: %s\n", big, little, len, expected, actual);
+	}
+}
+
 void	test_strnstr(void)
 {
 	char *big = "hello world";
     char *little1 = "world";
 	char *little2 = "\0";
 	char *little3 = "abc";
+
+	char empty[10];
+
+	empty[0] = 0;
+	empty[1] = 'a';
     
     printf("Expected 1:	%p\n", &big[6]);
-    printf("ft_strnstr 1:	%p\n", ft_strnstr(big, little1, 5));
+    printf("ft_strnstr 1:	%p\n", ft_strnstr(big, little1, 0));
 	printf("Expected 2:	%p\n", &big[0]);
 	printf("ft_strnstr 2:	%p\n", ft_strnstr(big, little2, 2));
 	printf("Expected 3:	%p\n", NULL);
-	printf("ft_strnstr 3:	%p\n\n", ft_strnstr(big, little3, 3));
+	printf("ft_strnstr 3:	%p\n\n", ft_strnstr(big, little3, 0));
+	printf("ft_strnstr crash: %s", ft_strnstr(NULL, "fake", 3));
+	printf("strnstr crash: %s", strnstr(NULL, "fake", 3));
+
+	sub_test_strnstr("abc", "xyz", 0);
+	sub_test_strnstr("abc", "xyz", 1);
+	sub_test_strnstr("", "", 0);
+	sub_test_strnstr("", "", 1);
+	sub_test_strnstr("", "", 2);
+	sub_test_strnstr("", "teste", 0);
+	sub_test_strnstr("", "teste", 1);
+	sub_test_strnstr("", "teste", 2);
+	sub_test_strnstr("teste", "", 0);
+	sub_test_strnstr("teste", "", 1);
+	sub_test_strnstr("teste", "", 2);
+	sub_test_strnstr("abcdefgh", "abc", 2);
+	sub_test_strnstr("abcdefgh", "abc", 3);
+	sub_test_strnstr("abcdefgh", "abc", 4);
+	sub_test_strnstr("abcdefgh", "abc", 5);
+	sub_test_strnstr("abc", "abcdef", 2);
+	sub_test_strnstr("abc", "abcdef", 3);
+	sub_test_strnstr("abc", "abcdef", 4);
+	sub_test_strnstr("abc", "abcdef", 5);
+	sub_test_strnstr("aaxx", "xx", 2);
+	sub_test_strnstr("aaxx", "xx", 3);
+	sub_test_strnstr("aaxx", "xx", 4);
+	sub_test_strnstr("aaxx", "xx", 5);
+	sub_test_strnstr("aaxx", "xx", 6);
+
+	sub_test_strnstr(empty, "xx", 0xffffffff);
+
+	unsigned char s1[10] = "abcdef";
+	unsigned char s2[10] = "abc\xfdxx";
+	sub_test_strnstr((char *)s1, (char *)s2, 3);
+	sub_test_strnstr((char *)s1, (char *)s2, 4);
+	sub_test_strnstr((char *)s1, (char *)s2, 5);
+
+	s1[3] = 0;
+	s2[3] = 0;
+	sub_test_strnstr((char *)s1, (char *)s2, 7);
 }
 
 void	test_atoi(void)
