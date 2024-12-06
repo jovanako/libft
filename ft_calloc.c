@@ -17,16 +17,12 @@ void	*ft_calloc(size_t nelem, size_t elsize)
 	void	*ptr;
 	int		bytes;
 
-	if (nelem == 0)
-		nelem = 1;
-	if (elsize == 0)
-		elsize = 1;
 	bytes = nelem * elsize;
-	if (!(nelem && (bytes / nelem == elsize)))
+	if (nelem && bytes / nelem != elsize)
 		return (0);
 	ptr = malloc(bytes);
 	if (!ptr)
 		return (0);
-	ft_bzero(ptr, bytes);
+	ft_memset(ptr, 0, bytes);
 	return (ptr);
 }

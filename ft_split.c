@@ -12,104 +12,74 @@
 
 #include "libft.h"
 
-static int	string_count(char *s, char c)
+static int	count_words(char const *s, char c)
 {
-	size_t	i;
-	size_t	s_len;
+	int		i;
 	int		count;
+	char	prev;
 
-	s_len = ft_strlen(s);
-	count = 1;
-	if (ft_strchr(s, c))
+	i = 0;
+	count = 0;
+	prev = c;
+	while (s[i])
 	{
-		i = 0;
-		while (i != s_len)
-		{
-			if (s[i] == c)
-			{
-				count++;
-			}
-			while (s[i] == c)
-				i++;
-			i++;
-		}
+		if (s[i] != c && prev == c)
+			count++;
+		prev = s[i++];
 	}
 	return (count);
 }
 
-static char	*find_next_word(char *s, char c)
+static  char    *extract_word(char const *s, char c, char **result, int res_position)
 {
-	size_t	i;
+    char    *start;
+    char    *end;
 
-	i = 0;
-	while (s[i] == c)
-		i++;
-	return (&(s[i]));
+    start = (char *)s;
+    while (*start && *start == c)
+    {
+            start++;
+    }
+	end = ft_strchr(start, c);
+	if (end == NULL)
+		end = start + ft_strlen(start);
+    result[res_position] = ft_substr(s, start - s, end - start);    
+    return (end);
 }
 
-static char	**no_parts(void)
+static void free_result(char **result)
 {
-	char	**result;
+    int     i;
 
-	result = (char **)malloc(sizeof(char *));
+    i = 0;
+    while (result[i])
+        free(result[i++]);
+    free(result);
+}
+
+char **ft_split(char const *s, char c)
+{
+    char	**result;
+	int		word_count;
+    int     i;
+    char    *current;
+
+	word_count = count_words(s, c);
+	result = (char **)malloc((word_count + 1) * sizeof(char *));
 	if (!result)
 		return (0);
-	result[0] = (void *)0;
-	return (result);
-}
-
-static char	**split_and_add_to_array(char *s, int parts_count,
-		char c, char **result)
-{
-	char	*start;
-	char	*next;
-	int		i;
-	int		j;
-
-	next = s;
-	start = s;
-	i = 0;
-	while (i < parts_count)
-	{
-		if (ft_strchr(start, c))
-			next = ft_strchr(start, c);
-		else
-			next = &(s[ft_strlen(s)]);
-		result[i] = ft_substr(s, start - s, next - start);
-		if (!result[i])
-		{
-			j = 0;
-			while (result[j])
-				free(result[j++]);
-			free(result);
-			return (0);
-		}
-		i++;
-		start = next;
-		start = find_next_word(start, c);
-	}
-	return (result);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	*str;
-	char	**result;
-	char	set[1];
-	int		parts_count;
-
-	set[0] = c;
-	str = (char *)s;
-	if ((ft_strlen(str) == 0) || !(*find_next_word(str, c)))
-		return (no_parts());
-	str = ft_strtrim(str, set);
-	if (!str)
-		return (0);
-	parts_count = string_count(str, c);
-	result = (char **)malloc((parts_count + 1) * sizeof(char *));
-	if (!result)
-		return (0);
-	result = split_and_add_to_array(str, parts_count, c, result);
-	result[parts_count] = (void *)0;
+	result[word_count] = (void *)0;
+    i = 0;
+    current = (char*)s;
+    while (i < word_count)
+    {
+        current = extract_word(current, c, result, i);
+        if (result[i] == NULL)
+        {
+            free_result(result);
+            return (NULL);
+        }
+        i++;
+    }	
 	return (result);
 }
