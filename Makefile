@@ -25,6 +25,10 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strle
 
 OBJS = $(SRCS:.c=.o)
 
+SRCS_BONUS = ft_1stnew_bonus.c
+
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+
 TEST_SRCS = test.c
 TEST_NAME = test
 
@@ -32,6 +36,9 @@ all: $(NAME)
 
 $(NAME) : $(OBJS)
 	ar rcs $(NAME) $(OBJS)
+
+bonus: $(NAME) $(OBJS) $(OBJS_BONUS)
+	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
 
 test: $(NAME)
 	cc $(CFLAGS) $(TEST_SRCS) $(LIBFLAGS) -lbsd -o $(TEST_NAME)
