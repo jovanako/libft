@@ -15,7 +15,7 @@ NAME = libft.a
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
-LIBFLAGS = -L. -lft
+DEPS = libft.h
 
 SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c \
 		ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_toupper.c \
@@ -31,9 +31,6 @@ SRCS_BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-TEST_SRCS = test.c
-TEST_NAME = test
-
 all: $(NAME)
 
 $(NAME) : $(OBJS)
@@ -42,19 +39,15 @@ $(NAME) : $(OBJS)
 bonus: $(NAME) $(OBJS) $(OBJS_BONUS)
 	ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
 
-test: $(NAME)
-	cc $(CFLAGS) $(TEST_SRCS) $(LIBFLAGS) -lbsd -o $(TEST_NAME)
-
-%.o: %.c
+%.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	rm -f $(NAME) $(TEST_NAME)
+	rm -f $(NAME)
 
 re: fclean all
-retest: fclean test
 
-.PHONY: all clean fclean re test retest
+.PHONY: all clean fclean re bonus
